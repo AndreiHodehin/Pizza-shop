@@ -15,6 +15,7 @@ import java.util.Set;
 public class ProductController {
     private final IProductService productService;
 
+
     @Autowired
     public ProductController(IProductService productService){
         this.productService = productService;
@@ -45,11 +46,14 @@ public class ProductController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/remove/{id}")
-    public ModelAndView remove(@PathVariable long id, ModelAndView modelAndView) {
-        productService.deleteProduct(id);
-        modelAndView.addObject("allProduct", productService.getAllProduct());
-        modelAndView.setViewName("redirect:/product/");
-        return modelAndView;
-    }
+    //hidden because this functionality can be malicious.
+    // deletion of products occurs automatically with the deletion of the pizza
+
+//    @GetMapping(value = "/remove/{id}")
+//    public ModelAndView delete(@PathVariable long id, ModelAndView modelAndView) {
+//        productService.deleteProduct(id);
+//        modelAndView.addObject("allProduct", productService.getAllProduct());
+//        modelAndView.setViewName("redirect:/product/");
+//        return modelAndView;
+//    }
 }

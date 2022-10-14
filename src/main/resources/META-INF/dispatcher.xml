@@ -5,13 +5,21 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:cache="http://www.springframework.org/schema/cache"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/context
-       https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/data/jpa https://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/data/jpa
+       https://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+       http://www.springframework.org/schema/cache
+       http://www.springframework.org/schema/cache/spring-cache.xsd">
 
+<import resource="classpath:/META-INF/security.xml"/>
 <context:component-scan base-package="proj"/>
     <mvc:annotation-driven/>
     <tx:annotation-driven/>
@@ -32,27 +40,20 @@
         <property name="persistenceUnitName" value="item"/>
     </bean>
 
-<!--    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">-->
-<!--        <property name="configLocation" value="classpath:persistence.xml"/>-->
-<!--    </bean>-->
-
-<!--    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">-->
-<!--        <property name="dataSource" ref="dataSource"/>-->
-<!--        <property name="packagesToScan">-->
-<!--            <list>-->
-<!--                <value>proj</value>-->
-<!--            </list>-->
-<!--        </property>-->
-<!--        <property name="hibernateProperties" >-->
-<!--            <props>-->
-<!--                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>-->
-<!--                <prop key="hibernate.show_sql">true</prop>-->
-<!--                <prop key="hibernate.hbm2ddl.auto">update</prop>-->
-<!--            </props>-->
-<!--        </property>-->
-<!--    </bean>-->
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
     <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <cache:annotation-driven/>
+    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+        <property name="caches">
+            <set>
+                <bean id="productCache" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"/>
+                <bean id="pizzaCache" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"/>
+                <bean id="userCache" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"/>
+                <bean id="stockCache" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"/>
+            </set>
+        </property>
     </bean>
 </beans>

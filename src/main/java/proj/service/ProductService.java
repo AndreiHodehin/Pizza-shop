@@ -1,6 +1,9 @@
 package proj.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import proj.domain.DTO.ProductPojo;
@@ -14,6 +17,8 @@ import java.util.*;
 
 @Service
 public class ProductService implements IProductService {
+    @Autowired
+    private IProductService productService;
     private final ProductRepository productRepository;
     private final Convertor convertor;
 
@@ -25,7 +30,7 @@ public class ProductService implements IProductService {
     @Override
     @Transactional
     public ProductPojo createProduct(Product product) {
-        System.out.println("in create product");
+        productService.clearCache();
         productRepository.save(product);
         return convertor.productToPojo(product);
     }
@@ -41,9 +46,15 @@ public class ProductService implements IProductService {
             throw new EmptyDataException("unable to get product");
         }
     }
+    @Override
+    @Transactional
+    public ProductPojo findProductByName(String name){
+        return convertor.productToPojo(productRepository.findProductByProdName(name));
+    }
 
     @Override
     @Transactional
+    @Cacheable(value = "productCache")
     public SortedSet<ProductPojo> getAllProduct() {
         SortedSet<ProductPojo> set = new TreeSet<>();
         productRepository.findAll().forEach(p->set.add(convertor.productToPojo(p)));
@@ -53,16 +64,16 @@ public class ProductService implements IProductService {
     @Override
     @Transactional
     public ProductPojo updateProduct(Product product) {
+        productService.clearCache();
         Optional<Product> old = productRepository.findById(product.getId());
         if(old.isPresent()) {
             Product target = old.get();
             if(product.getProdName() == null){
                 target.setProdName(product.getProdName());
             }
-            target.setAmountInUnit(product.getAmountInUnit());
+            target.setAmount(product.getAmount());
             target.setPizzaList(product.getPizzaList());
             target.setUnit(product.getUnit());
-            target.setTotalStock(product.getTotalStock());
             productRepository.save(target);
         }
         return convertor.productToPojo(product);
@@ -71,8 +82,13 @@ public class ProductService implements IProductService {
     @Override
     @Transactional
     public void deleteProduct(long id) {
+        productService.clearCache();
         productRepository.deleteById(id);
     }
 
+    @CacheEvict(value = "productCache")
+    public void clearCache() {
+        System.out.println("Product cache cleared");
+    }
 
 }

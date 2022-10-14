@@ -1,7 +1,5 @@
 package proj.domain.DTO;
 
-import proj.domain.Pizza;
-
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -10,10 +8,9 @@ import java.util.TreeSet;
 public class ProductPojo implements Comparable<ProductPojo>{
     private long id;
     private String prodName;
-    private double minAmount;
+    private double amount;
     private String unit;
-    private double totalStock;
-    private SortedSet<Long> pojoSet;
+    private SortedSet<Long> pizzaList;
 
     public long getId() {
         return id;
@@ -31,12 +28,12 @@ public class ProductPojo implements Comparable<ProductPojo>{
         this.prodName = prodName;
     }
 
-    public double getMinAmount() {
-        return minAmount;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setMinAmount(double minAmount) {
-        this.minAmount = minAmount;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     public String getUnit() {
@@ -47,21 +44,14 @@ public class ProductPojo implements Comparable<ProductPojo>{
         this.unit = unit;
     }
 
-    public double getTotalStock() {
-        return totalStock;
+
+    public SortedSet<Long> getPizzaList() {
+        return pizzaList;
     }
 
-    public void setTotalStock(double totalStock) {
-        this.totalStock = totalStock;
-    }
-
-    public SortedSet<Long> getPojoSet() {
-        return pojoSet;
-    }
-
-    public void setPojoSet(Set<Long> pojoSet) {
-        this.pojoSet = new TreeSet<>();
-        this.pojoSet.addAll(pojoSet);
+    public void setPizzaList(Set<Long> pizzaList) {
+        this.pizzaList = new TreeSet<>();
+        this.pizzaList.addAll(pizzaList);
     }
 
     @Override
@@ -69,10 +59,9 @@ public class ProductPojo implements Comparable<ProductPojo>{
         return "ProductPojo{" +
                 "id=" + id +
                 ", prodName='" + prodName + '\'' +
-                ", minAmount=" + minAmount +
+                ", amount=" + amount +
                 ", unit='" + unit + '\'' +
-                ", totalStock=" + totalStock +
-                ", pojoSet=" + pojoSet +
+                ", pizzaList=" + pizzaList +
                 '}';
     }
 

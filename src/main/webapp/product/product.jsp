@@ -15,12 +15,7 @@
 
 <h1 align="center">Admin info about Product</h1>
 
-<c:if test="${not empty exempl}">
-    <hr/>
-    <br>
-    <h2 align="center">Searched product is :</h2>
-    <p align="center">${exempl}</p>
-</c:if>
+
 
 <c:if test="${not empty allProduct}">
     <hr/>
@@ -32,9 +27,10 @@
         <tr>
             <th>№</th>
             <th>Name</th>
+            <th>In pizza</th>
             <th>MinAmount</th>
             <th>Unit</th>
-            <th>TotalStock</th>
+
         </tr>
         </thead>
         <tbody>
@@ -42,10 +38,9 @@
             <tr>
                 <td>${p.id}</td>
                 <td>${p.prodName}</td>
-                <td>${p.amountInUnit}</td>
+                <td><c:forEach items="${p.pizzaList}" var="pizza">${pizza}</c:forEach></td>
+                <td>${p.amount}</td>
                 <td>${p.unit}</td>
-                <td>${p.totalStock}</td>
-                <td><a href="/product/remove/${p.id}">Remove</a> </td>
             </tr>
         </c:forEach>
         </tbody>
@@ -56,10 +51,10 @@
 <br>
 <h2 align="center">Create new product</h2>
 <form align="center" action="/product/create" method="post" modelAttribute="product">
-    <p>Product name:<input type="text" name="prodName"> </p>
-    <p>amountInUnit :<input type="number" name="amountInUnit"> </p>
-    <p>Unit name:<input type="text" name="unit"> </p>
-    <p>Total stock:<input type="number" name="totalStock"> </p>
+    <p>Product username:<input type="text" name="prodName"> </p>
+    <p>amount :<input type="number" step="0.01" name="amount" > </p>
+    <p>Unit username:<input type="text" name="unit"> </p>
+    <p>Total stock:<input type="number" step="0.01" name="totalStock"> </p>
     <p><input type="submit" value="Submit"></p>
 </form>
 
@@ -68,11 +63,15 @@
 <h2 align="center">Update product</h2>
 <form align="center" action="/product/update" method="post" modelAttribute="product">
     <p>Product ID: <input type="number" name="id"> </p>
-    <p>Product name: <input type="text" name="prodName"> </p>
-    <p>amountInUnit : <input type="number" name="amountInUnit"> </p>
-    <p>Unit name: <input type="text" name="unit"> </p>
+    <p>Product username: <input type="text" name="prodName"> </p>
+    <p>Unit username: <input type="text" name="unit"> </p>
     <p>Total stock: <input type="number" name="totalStock"> </p>
     <p><input type="submit" value="Submit"></p>
 </form>
+<hr/>
+<br>
+
+<p align="center"><a href="/main.jsp">Back</a></p>
+<p align="right"><a align="right" href="/logout">Logout</a></p>
 </body>
 </html>

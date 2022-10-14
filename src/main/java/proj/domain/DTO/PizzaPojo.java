@@ -8,6 +8,7 @@ import java.util.TreeSet;
 public class PizzaPojo implements Comparable<PizzaPojo> {
     private long id;
     private String name;
+    private long cookingTimeInMin;
     private SortedSet<ProductPojo> productList;
 
     public long getId() {
@@ -30,6 +31,18 @@ public class PizzaPojo implements Comparable<PizzaPojo> {
         return productList;
     }
 
+    public long getCookingTimeInMin() {
+        return cookingTimeInMin;
+    }
+
+    public void setCookingTimeInMin(long cookingTimeInMin) {
+        this.cookingTimeInMin = cookingTimeInMin;
+    }
+
+    public void setProductList(SortedSet<ProductPojo> productList) {
+        this.productList = productList;
+    }
+
     public void setProductList(Set<ProductPojo> products) {
         productList = new TreeSet<>();
         productList.addAll(products);
@@ -41,6 +54,7 @@ public class PizzaPojo implements Comparable<PizzaPojo> {
         return "PizzaPojo{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", cookingTimeInMin=" + cookingTimeInMin +
                 ", productList=" + productList +
                 '}';
     }

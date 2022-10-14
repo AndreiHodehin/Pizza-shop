@@ -12,10 +12,9 @@ public class Product implements Comparable<Product> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String prodName;
-    private double amountInUnit;
+    private double amount;
     private String unit;
-    private double totalStock;
-    @ManyToMany(mappedBy = "productList")
+    @ManyToMany(mappedBy = "productList",fetch = FetchType.LAZY)
     @SortNatural
     private SortedSet<Pizza> pizzaList = new TreeSet<>();
 
@@ -35,12 +34,12 @@ public class Product implements Comparable<Product> {
         this.prodName = prodName;
     }
 
-    public double getAmountInUnit() {
-        return amountInUnit;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setAmountInUnit(double amountInUnit) {
-        this.amountInUnit = amountInUnit;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     public String getUnit() {
@@ -51,13 +50,6 @@ public class Product implements Comparable<Product> {
         this.unit = unit;
     }
 
-    public double getTotalStock() {
-        return totalStock;
-    }
-
-    public void setTotalStock(double totalStock) {
-        this.totalStock = totalStock;
-    }
 
     public SortedSet<Pizza> getPizzaList() {
         return pizzaList;
@@ -80,9 +72,8 @@ public class Product implements Comparable<Product> {
         return "Product{" +
                 "id=" + id +
                 ", prodName='" + prodName + '\'' +
-                ", amountInUnit=" + amountInUnit +
+                ", amount=" + amount +
                 ", unit='" + unit + '\'' +
-                ", totalStock=" + totalStock +
                 ", pizzaList=" + pizzaList +
                 '}';
     }
