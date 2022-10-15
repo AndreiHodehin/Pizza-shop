@@ -13,9 +13,14 @@
 <body>
 
 <form align="center" action="/user/register" method="post" modelAttribute="user">
-    <label for="username">Username: </label><input type="text" name="username" id="username">
-    <label for="password">Password: </label><input type="password" name="password" id="password">
-    <input type="submit" value="register">
+    <p><label for="username">Username: </label><input type="text" name="username" id="username"></p>
+    <p><label for="password">Password: </label><input type="password" name="password" id="password"></p>
+    <p><label for="email">Email: </label><input type="text" name="email" id="email"></p>
+    <p><label for="first_name">First name: </label><input type="text" name="firstName" id="first_name"></p>
+    <p><label for="last_name">Last name: </label><input type="text" name="lastName" id="last_name"></p>
+    <p><label for="address">Address: </label><input type="text" name="address" id="address"></p>
+    <p><label for="phone">Phone number: </label><input type="text" name="phoneNumber" id="phone"></p>
+    <p><input type="submit" value="register"></p>
 </form>
 <hr/>
 <br>

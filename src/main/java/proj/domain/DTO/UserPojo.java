@@ -3,7 +3,6 @@ package proj.domain.DTO;
 import proj.domain.Pizza;
 import proj.domain.Role;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +14,8 @@ public class UserPojo {
     private String email;
     private String password;
     private String username;
-    private String surname;
+    private String firstName;
+    private String lastName;
     private String address;
     private String phoneNumber;
     private Set<Role> role = new HashSet<>();
@@ -53,12 +53,20 @@ public class UserPojo {
         this.username = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddress() {
@@ -99,8 +107,9 @@ public class UserPojo {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", name='" + username + '\'' +
-                ", surname='" + surname + '\'' +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", role=" + role +

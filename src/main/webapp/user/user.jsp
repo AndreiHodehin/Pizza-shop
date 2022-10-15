@@ -24,7 +24,7 @@
         <th>№</th>
         <th>Name</th>
         <th>Products</th>
-
+        <th>Cooking time</th>
     </tr>
     </thead>
     <tbody>
@@ -35,6 +35,7 @@
             <td><c:forEach items="${p.productList}" var="pr">
                 ${pr.prodName} ;
             </c:forEach></td>
+            <td>${p.cookingTimeInMin}</td>
         </tr>
     </c:forEach>
     </tbody>
@@ -43,7 +44,7 @@
 <hr/>
 <br/>
 
-<form align="center" action="/user/order" method="post" border="1">
+<form align="center" action="/user/order" method="post">
 
     <c:forEach items="${allPizza}" var="pizza" varStatus="status">
         <input type="checkbox" name="pizzaName" value="${pizza.name}">${pizza.name}

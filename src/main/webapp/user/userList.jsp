@@ -18,7 +18,8 @@
     <tr>
         <td>Email</td>
         <td>Username</td>
-        <td>Surname</td>
+        <td>First name</td>
+        <td>Last name</td>
         <td>Address</td>
         <td>Phone number</td>
     </tr>
@@ -28,7 +29,8 @@
     <tr>
         <td>${user.email}</td>
         <td>${user.username}</td>
-        <td>${user.surname}</td>
+        <td>${user.firstName}</td>
+        <td>${user.lastName}</td>
         <td>${user.address}</td>
         <td>${user.phoneNumber}</td>
         <td><a href="/user/remove/${user.id}">Remove</a></td>

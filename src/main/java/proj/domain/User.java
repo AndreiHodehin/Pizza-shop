@@ -1,9 +1,10 @@
 package proj.domain;
 
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,9 +20,10 @@ public class User {
     private String email;
     private String password;
     @Column(unique = true,nullable = false)
-    @Size(min = 3,max = 15, message = "username should be between 4 and 15")
+    @Size(min = 3,max = 15, message = "username should be between 3 and 15")
     private String username;
-    private String surname;
+    private String firstName;
+    private String lastName;
     private String address;
     private String phoneNumber;
 
@@ -66,12 +68,20 @@ public class User {
         this.username = username;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddress() {
@@ -114,14 +124,14 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
-                ", surname='" + surname + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", role=" + role +
-//                ", pizzaList=" + pizzaList +
+                ", orders=" + orders +
                 '}';
     }
-
 
     public void addRole(Role roleUser) {
         role.add(roleUser);

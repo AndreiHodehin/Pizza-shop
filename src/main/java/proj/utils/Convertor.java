@@ -44,7 +44,8 @@ public class Convertor {
         pojo.setEmail(user.getEmail());
         pojo.setPassword(user.getPassword());
         pojo.setPhoneNumber(user.getPhoneNumber());
-        pojo.setSurname(user.getSurname());
+        pojo.setFirstName(user.getFirstName());
+        pojo.setLastName(user.getLastName());
         pojo.setRole(user.getRole());
         return pojo;
     }

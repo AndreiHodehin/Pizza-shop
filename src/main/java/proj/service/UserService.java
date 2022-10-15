@@ -62,7 +62,8 @@ public class UserService implements IUserService {
             target.setUsername(user.getUsername());
             target.setEmail(user.getEmail());
             target.setPassword(user.getPassword());
-            target.setSurname(user.getSurname());
+            target.setFirstName(user.getFirstName());
+            target.setLastName(user.getLastName());
             target.setPhoneNumber(user.getPhoneNumber());
             target.setRole(user.getRole());
             userRepository.save(target);
@@ -81,9 +82,7 @@ public class UserService implements IUserService {
     @Transactional
     public UserPojo getUserByUsername (String username) {
         Optional<User> user = userRepository.findUserByUsername(username);
-        if(user.isPresent()) {
-            return convertor.userToPojo(user.get());
-        } else { return null;}
+        return user.map(convertor::userToPojo).orElse(null);
     }
 
 
@@ -94,7 +93,8 @@ public class UserService implements IUserService {
         if(optional.isPresent()) {
             User target = optional.get();
             target.setEmail(user.getEmail());
-            target.setSurname(user.getSurname());
+            target.setFirstName(user.getFirstName());
+            target.setLastName(user.getLastName());
             target.setPhoneNumber(user.getPhoneNumber());
             target.setAddress(user.getAddress());
             userRepository.save(target);
@@ -108,13 +108,17 @@ public class UserService implements IUserService {
     @Cacheable(value = "userCache")
     public List<PizzaPojo> findAllPizzaOfUserByUsername(String username) {
         Optional<User> optional = userRepository.findUserByUsername(username);
+
         if(optional.isPresent()){
             List<PizzaPojo> list = new ArrayList<>();
+
             List<Order> orders = optional.get().getOrders();
             for (Order o:orders) {
                 o.getOrderedPizza().forEach(p->list.add(convertor.pizzaToPojo(p)));
             }
+
             return list;
+
         } else {
             throw new EmptyDataException("no user in database");
         }

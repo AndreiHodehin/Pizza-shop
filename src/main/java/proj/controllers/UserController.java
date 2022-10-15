@@ -119,8 +119,7 @@ public class UserController {
     @GetMapping(value = "/remove/{id}")
     public ModelAndView removeUser(@PathVariable long id, ModelAndView modelAndView) {
         userService.deleteUser(id);
-        modelAndView.addObject("userList",userService.findAllUser());
-        modelAndView.setViewName("redirect:userList.jsp");
+        modelAndView.setViewName("redirect:/user/users");
         return modelAndView;
     }
 }

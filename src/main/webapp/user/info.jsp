@@ -14,12 +14,13 @@
 <body>
 
 <h1 align="center">Actual information</h1>
-<table align="center">
+<table align="center" border="1">
     <thead>
     <tr>
         <td>Email</td>
         <td>Username</td>
-        <td>Surname</td>
+        <td>firstName</td>
+        <td>lastName</td>
         <td>Address</td>
         <td>Phone number</td>
     </tr>
@@ -28,16 +29,18 @@
     <tr>
             <td>${userInfo.email}</td>
             <td>${userInfo.username}</td>
-            <td>${userInfo.surname}</td>
+            <td>${userInfo.firstName}</td>
+            <td>${userInfo.lastName}</td>
             <td>${userInfo.address}</td>
             <td>${userInfo.phoneNumber}</td>
     </tr>
     </tbody>
 </table>
-<h1 align="center">Enter information about yourself</h1>
+<h1 align="center">Enter information your credential</h1>
 <form align="center" action="/user/info" method="post" modelAttribute="user">
     <label for="email">Email: </label><input type="text" name="email" id="email" >
-    <label for="surname">Surname: </label><input type="text" name="surname" id="surname" >
+    <label for="firstName">First name: </label><input type="text" name="firstName" id="firstName" >
+    <label for="lastName">Last name: </label><input type="text" name="lastName" id="lastName" >
     <label for="address">Address : </label><input type="text" name="address" id="address" >
     <label for="number">Phone number: </label><input type="text" name="phoneNumber" id="number" >
     <input type="submit" value="Fill">
