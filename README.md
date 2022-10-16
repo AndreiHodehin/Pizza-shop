@@ -40,3 +40,48 @@ In the future, functionality for the consumption of products for pizzas will be 
 
 3.Database used:
 - MySQL
+
+
+======== Importing and Running The Project Through IntelligIdia ===========
+
+Step 1: Open intelligIdea.
+
+Step 2: Create new project from version control and past the repository URL as https://github.com/AndreiHodehin/Pizza-shop.git
+
+Step 3: Open MySql workbench > login and copy and paste the following command: 
+
+    create database if not exists pizza; 
+
+Step 4:  Go inside src/main/resources/META-INF/persistence.xml  and update the value of database details as per your usage, like db.driver, db.host, db.username and db.password according to your installed mysql admin user credentials. 
+
+Step 5: Connect Tomcat Server (Install, if not already installed). Run > Edit configuration > Add ew configuration > Tomcat Local > in Deployment make "application context" - "/" and press "Fix" > choose "war exploded" artifact. 
+
+Step 6: Run app for hibernate creates tabes. Stop app.
+
+Step 7: Copy paste the following MySql Commands in Workbench:
+
+    insert into user(address, email, firstName, lastName, password, phoneNumber, username)
+    VALUES ('***','somth@email.com','fName','lName','123','000-000','admin');
+    
+    insert into user_role(USER_ID, role) VALUES (1,'ROLE_ADMIN');
+  
+Step 8: Default Username And Password For Admin Is "Admin" And "123". Now you can insert product to warehouse and create pizza form them.
+
+Step 9: For using as User logout and registrate .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
