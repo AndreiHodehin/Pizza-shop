@@ -3,7 +3,6 @@ Java app for creating pizza menu by admin and ordering by user.
 
 # About
 
-Online pizza shop with .
 This is an online pizza shop with the ability to register as a user, order pizza and track its readiness.
 Also carried out operations for the management of a pizzeria. 
 The administrator can add products to the warehouse with their quantity, compose and create menus from these products.
@@ -54,9 +53,9 @@ Step 3: Open MySql workbench > login and copy and paste the following command:
 
 Step 4:  Go inside src/main/resources/META-INF/persistence.xml  and update the value of database details as per your usage, like db.driver, db.host, db.username and db.password according to your installed mysql admin user credentials. 
 
-Step 5: Connect Tomcat Server (Install, if not already installed). Run > Edit configuration > Add ew configuration > Tomcat Local > in Deployment make "application context" - "/" and press "Fix" > choose "war exploded" artifact. 
+Step 5: Connect Tomcat Server (Install, if not already installed). Run > Edit configuration > Add new configuration > Tomcat Local > in Deployment make "application context" - "/" and press "Fix" > choose "war exploded" artifact. 
 
-Step 6: Run app for hibernate creates tabes. Stop app.
+Step 6: Run app for hibernate creates tables. Stop app.
 
 Step 7: Copy paste the following MySql Commands in Workbench:
 
