@@ -12,7 +12,7 @@ In the future, functionality for the consumption of products for pizzas will be 
 # This Website is built for following purpose:
 
 - this is a project for learning new technologies.
-- used by java, spring mvc , hibernate, spring security , spring cache , jsp.
+- used by java, spring mvc , spring data spring security , spring cache , jsp.
 - this version implements the main functionality, but there is still a lot to be done and this project has a lot of potential for changes and new things
 
 # Administrator has the following options
@@ -34,7 +34,7 @@ In the future, functionality for the consumption of products for pizzas will be 
 - Spring-mvc
 - Spring-security
 - Spring-cache
-- Hibernate 5
+- Sspring-data
 - Maven
 
 3.Database used:
